@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find a Donor — Sanguine</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/forms.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Find a Donor</span>
+      <h1>Search the donor network</h1>
+      <p class="lead">Filter by blood group, city, and current availability.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="filter-bar card">
+        <div class="field">
+          <label for="filterGroup">Blood group</label>
+          <select id="filterGroup">
+            <option value="">All groups</option>
+            <option>O+</option><option>O-</option><option>A+</option><option>A-</option>
+            <option>B+</option><option>B-</option><option>AB+</option><option>AB-</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="filterCity">City</label>
+          <input type="text" id="filterCity" placeholder="e.g. Mohali">
+        </div>
+        <div class="field">
+          <div class="checkbox-row" style="margin-top:1.6rem;">
+            <input type="checkbox" id="filterAvailable">
+            <label for="filterAvailable" style="margin:0;">Available only</label>
+          </div>
+        </div>
+      </div>
+
+      <p id="donorEmpty" class="muted" style="display:none;">No donors match those filters yet — try widening your search.</p>
+      <div class="grid grid-3" id="donorResults"></div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/app.js"></script>
+<script src="js/search.js"></script>
+</body>
+</html>

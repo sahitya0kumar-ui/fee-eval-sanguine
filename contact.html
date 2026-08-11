@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Sanguine</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/forms.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Contact</span>
+      <h1>We're here to help</h1>
+      <p class="lead">Reach out with questions, partnership ideas, or feedback on the platform.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container grid grid-2">
+      <form id="contactForm" class="form-card" novalidate>
+        <div class="field">
+          <label for="cname">Name</label>
+          <input type="text" id="cname" name="name" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label for="cemail">Email</label>
+          <input type="email" id="cemail" name="email" placeholder="you@example.com" required>
+        </div>
+        <div class="field">
+          <label for="cmessage">Message</label>
+          <textarea id="cmessage" name="message" rows="5" placeholder="How can we help?" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+      </form>
+
+      <div>
+        <div class="card reveal in" style="margin-bottom:1.2rem;">
+          <h3>Emergency numbers</h3>
+          <p class="mb-0">National Blood Helpline: <strong>104</strong></p>
+          <p class="mb-0">Ambulance: <strong>102 / 108</strong></p>
+        </div>
+        <div class="card reveal in" style="margin-bottom:1.2rem;">
+          <h3>Head office</h3>
+          <p class="mb-0">Sector 34, Chandigarh, India</p>
+          <p class="mb-0">Mon–Sat, 9:00 AM – 6:00 PM</p>
+        </div>
+        <div class="card reveal in">
+          <h3>Follow us</h3>
+          <div class="flex gap-sm">
+            <a href="#" class="btn btn-ghost btn-sm">Instagram</a>
+            <a href="#" class="btn btn-ghost btn-sm">X / Twitter</a>
+            <a href="#" class="btn btn-ghost btn-sm">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  attachFormValidation(document.getElementById('contactForm'), {
+    cname: [Validators.required],
+    cemail: [Validators.required, Validators.email],
+    cmessage: [Validators.required, Validators.minLen(10)]
+  }, (data, formEl) => {
+    showToast(`Thanks ${data.name.split(' ')[0]}, we'll reply to ${data.email} soon.`, 'success');
+    formEl.reset();
+  });
+});
+</script>
+</body>
+</html>

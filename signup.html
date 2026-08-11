@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up — Sanguine</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/forms.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<main class="auth-shell">
+  <div class="container" style="max-width:460px;">
+    <form id="signupForm" class="form-card" novalidate>
+      <div class="text-center" style="margin-bottom:1.5rem;">
+        <span class="eyebrow">Join the network</span>
+        <h1 style="font-size:1.8rem;">Create your account</h1>
+      </div>
+      <div class="field">
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" placeholder="e.g. Isha Verma" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="At least 6 characters" required>
+        <div class="strength-meter" id="strengthMeter"><span></span><span></span><span></span><span></span></div>
+      </div>
+      <div class="field">
+        <label for="confirmPassword">Confirm password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter password" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+      <p class="muted text-center" style="margin-top:1rem;">Already registered? <a href="login.html" style="color:var(--color-primary);font-weight:600;">Log in</a></p>
+    </form>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

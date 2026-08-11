@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donor Registration — Sanguine</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/forms.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="container text-center">
+      <span class="eyebrow">Donor Registration</span>
+      <h1>Register as a blood donor</h1>
+      <p class="lead" style="max-width:50ch;margin-inline:auto;">Takes about two minutes. Your details stay on this device via local storage for this demo.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <form id="donorForm" class="form-card" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="fullName">Full name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="e.g. Aarav Sharma" required>
+          </div>
+          <div class="field">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" min="18" max="65" placeholder="18–65" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="weight">Weight (kg)</label>
+            <input type="number" id="weight" name="weight" min="45" max="200" placeholder="Minimum 45kg" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Blood group</label>
+          <div class="bg-picker" role="radiogroup" aria-label="Blood group">
+            <input type="radio" id="bg-op" name="bloodGroup" value="O+" checked><label for="bg-op">O+</label>
+            <input type="radio" id="bg-on" name="bloodGroup" value="O-"><label for="bg-on">O-</label>
+            <input type="radio" id="bg-ap" name="bloodGroup" value="A+"><label for="bg-ap">A+</label>
+            <input type="radio" id="bg-an" name="bloodGroup" value="A-"><label for="bg-an">A-</label>
+            <input type="radio" id="bg-bp" name="bloodGroup" value="B+"><label for="bg-bp">B+</label>
+            <input type="radio" id="bg-bn" name="bloodGroup" value="B-"><label for="bg-bn">B-</label>
+            <input type="radio" id="bg-abp" name="bloodGroup" value="AB+"><label for="bg-abp">AB+</label>
+            <input type="radio" id="bg-abn" name="bloodGroup" value="AB-"><label for="bg-abn">AB-</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" required>
+          </div>
+          <div class="field">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="address">Address</label>
+          <input type="text" id="address" name="address" placeholder="House / street / area" required>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="e.g. Mohali" required>
+          </div>
+          <div class="field">
+            <label for="lastDonation">Last donation date <span class="hint">(optional)</span></label>
+            <input type="date" id="lastDonation" name="lastDonation">
+          </div>
+        </div>
+
+        <div class="checkbox-row" style="margin-bottom:var(--space-md);">
+          <input type="checkbox" id="consent" required>
+          <label for="consent" style="margin:0;">I confirm the information above is accurate and I consent to being contacted for donation requests.</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Complete Registration</button>
+      </form>
+
+      <div class="form-card mt-lg">
+        <h3>My donation history</h3>
+        <div id="donationHistory"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/app.js"></script>
+<script src="js/donor.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request Blood — Sanguine</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/forms.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="container text-center">
+      <span class="eyebrow">Emergency Blood Request</span>
+      <h1>Post a request in seconds</h1>
+      <p class="lead" style="max-width:52ch;margin-inline:auto;">Nearby available donors matching this blood group will see this request immediately.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <form id="requestForm" class="form-card" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="patient">Patient name</label>
+            <input type="text" id="patient" name="patient" placeholder="Patient's full name" required>
+          </div>
+          <div class="field">
+            <label for="hospital">Hospital</label>
+            <input type="text" id="hospital" name="hospital" placeholder="Hospital name" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Blood group needed</label>
+          <div class="bg-picker" role="radiogroup" aria-label="Blood group needed">
+            <input type="radio" id="rbg-op" name="bloodGroup" value="O+" checked><label for="rbg-op">O+</label>
+            <input type="radio" id="rbg-on" name="bloodGroup" value="O-"><label for="rbg-on">O-</label>
+            <input type="radio" id="rbg-ap" name="bloodGroup" value="A+"><label for="rbg-ap">A+</label>
+            <input type="radio" id="rbg-an" name="bloodGroup" value="A-"><label for="rbg-an">A-</label>
+            <input type="radio" id="rbg-bp" name="bloodGroup" value="B+"><label for="rbg-bp">B+</label>
+            <input type="radio" id="rbg-bn" name="bloodGroup" value="B-"><label for="rbg-bn">B-</label>
+            <input type="radio" id="rbg-abp" name="bloodGroup" value="AB+"><label for="rbg-abp">AB+</label>
+            <input type="radio" id="rbg-abn" name="bloodGroup" value="AB-"><label for="rbg-abn">AB-</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="units">Units required</label>
+            <input type="number" id="units" name="units" min="1" max="20" placeholder="e.g. 2" required>
+          </div>
+          <div class="field">
+            <label for="contact">Contact number</label>
+            <input type="tel" id="contact" name="contact" placeholder="10-digit mobile number" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="e.g. Chandigarh" required>
+          </div>
+          <div class="field">
+            <label>Urgency</label>
+            <div class="urgency-picker" role="radiogroup" aria-label="Urgency">
+              <input type="radio" id="u-low" name="urgency" value="Low"><label for="u-low">Low</label>
+              <input type="radio" id="u-mod" name="urgency" value="Moderate" checked><label for="u-mod">Moderate</label>
+              <input type="radio" id="u-crit" name="urgency" value="Critical"><label for="u-crit">Critical</label>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Post Emergency Request</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header"><span class="eyebrow">Live feed</span><h2>Active blood requests</h2></div>
+      <div class="grid grid-3" id="requestFeed"></div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/app.js"></script>
+<script src="js/request.js"></script>
+</body>
+</html>

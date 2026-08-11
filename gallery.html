@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — Sanguine</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Gallery</span>
+      <h1>Moments from the movement</h1>
+      <p class="lead">Camps, volunteers, hospitals, and drives from across the network.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container gallery-grid" id="galleryGrid"></div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/app.js"></script>
+<script>
+const GALLERY = [
+  { label: 'Corporate Donor Drive', tag: 'Camp' },
+  { label: 'Volunteer Team, Mohali', tag: 'Volunteers' },
+  { label: 'City Life Hospital', tag: 'Hospital' },
+  { label: 'University Blood Camp', tag: 'Camp' },
+  { label: 'First-time Donor Day', tag: 'Drive' },
+  { label: 'Fortis Blood Bank', tag: 'Hospital' },
+  { label: 'Community Health Drive', tag: 'Drive' },
+  { label: 'Thank-You Ceremony', tag: 'Volunteers' }
+];
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('galleryGrid').innerHTML = GALLERY.map(g => `
+    <div class="gallery-item reveal in">
+      <div class="ph">${g.tag}</div>
+      <div class="cap">${g.label}</div>
+    </div>`).join('');
+});
+</script>
+</body>
+</html>

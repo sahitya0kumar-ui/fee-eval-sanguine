@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — Sanguine</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/forms.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="container text-center">
+      <span class="eyebrow">FAQ</span>
+      <h1>Frequently asked questions</h1>
+      <div class="field" style="max-width:420px;margin:1rem auto 0;">
+        <input type="text" id="faqSearch" placeholder="Search questions…">
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container" style="max-width:760px;">
+      <div id="faqList"></div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/app.js"></script>
+<script>
+const FAQS = [
+  { q: 'Does donating blood hurt?', a: 'Most donors feel only a brief pinch when the needle is inserted. The donation itself typically takes 8–10 minutes and is not painful.' },
+  { q: 'How often can I donate?', a: 'Whole-blood donors can generally donate again after about 56 days (8 weeks), giving your body time to replenish red blood cells.' },
+  { q: 'Is my data safe on Sanguine?', a: 'This demo stores your details only in your browser\'s local storage — nothing is sent to a server.' },
+  { q: 'What should I do before donating?', a: 'Sleep well, eat a balanced meal, and drink plenty of water in the hours before your appointment.' },
+  { q: 'Can I request blood for someone else?', a: 'Yes — use the Request Blood page to post an emergency request on behalf of a patient.' },
+  { q: 'What if I miss my donation interval?', a: 'No problem — simply update your availability and donate whenever you\'re next eligible.' }
+];
+
+function renderFAQ(list) {
+  document.getElementById('faqList').innerHTML = list.map((f, i) => `
+    <div class="accordion-item">
+      <button class="acc-trigger" aria-expanded="false">${f.q}<span class="plus">+</span></button>
+      <div class="acc-panel"><p>${f.a}</p></div>
+    </div>`).join('');
+  initAccordions();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderFAQ(FAQS);
+  document.getElementById('faqSearch').addEventListener('input', (e) => {
+    const q = e.target.value.toLowerCase();
+    renderFAQ(FAQS.filter(f => f.q.toLowerCase().includes(q) || f.a.toLowerCase().includes(q)));
+  });
+});
+</script>
+</body>
+</html>

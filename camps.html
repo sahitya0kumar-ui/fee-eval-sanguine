@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donation Camps — Sanguine</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Donation Camps</span>
+      <h1>Upcoming blood donation camps</h1>
+      <p class="lead">Register your seat ahead of time — walk-ins are welcome where space allows.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container grid grid-3" id="campList"></div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const mount = document.getElementById('campList');
+
+  function render() {
+    const camps = DB.all(DB.KEYS.CAMPS);
+    mount.innerHTML = camps.map(c => {
+      const full = c.registered >= c.seats;
+      return `
+      <div class="card camp-card reveal in">
+        <span class="badge">${new Date(c.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+        <h3>${c.title}</h3>
+        <p class="muted mb-0">📍 ${c.venue}</p>
+        <p class="muted mb-0">Organized by ${c.organizer}</p>
+        <div class="progress-track"><div class="progress-fill" style="width:${Math.round((c.registered / c.seats) * 100)}%"></div></div>
+        <p class="muted" style="margin:0.4rem 0;">${c.registered}/${c.seats} seats filled</p>
+        <button class="btn ${full ? 'btn-ghost' : 'btn-primary'} btn-sm" data-camp="${c.id}" ${full ? 'disabled' : ''}>${full ? 'Camp Full' : 'Register for Camp'}</button>
+      </div>`;
+    }).join('');
+
+    mount.querySelectorAll('button[data-camp]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const camps2 = DB.all(DB.KEYS.CAMPS);
+        const camp = camps2.find(c => c.id === btn.dataset.camp);
+        if (camp && camp.registered < camp.seats) {
+          DB.update(DB.KEYS.CAMPS, camp.id, { registered: camp.registered + 1 });
+          showToast(`You're registered for ${camp.title}!`, 'success');
+          render();
+        }
+      });
+    });
+  }
+  render();
+});
+</script>
+</body>
+</html>

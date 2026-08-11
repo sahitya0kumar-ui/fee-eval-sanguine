@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blood Compatibility — Sanguine</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">Blood Compatibility</span>
+      <h1>Who can donate to whom</h1>
+      <p class="lead">Click any blood group to highlight its donation and recipient matches.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="compat-table-wrap">
+        <table class="compat" id="compatTable">
+          <thead>
+            <tr><th>Blood group</th><th>Can donate to</th><th>Can receive from</th></tr>
+          </thead>
+          <tbody id="compatBody"></tbody>
+        </table>
+      </div>
+
+      <div class="grid grid-2 mt-lg" id="compatDetail" style="display:none;">
+        <div class="card"><h3>Can donate to</h3><div id="donateToList" class="flex gap-sm" style="flex-wrap:wrap;"></div></div>
+        <div class="card"><h3>Can receive from</h3><div id="receiveFromList" class="flex gap-sm" style="flex-wrap:wrap;"></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="js/storage.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/app.js"></script>
+<script>
+const COMPAT = {
+  'O-':  { to: ['O-','O+','A-','A+','B-','B+','AB-','AB+'], from: ['O-'] },
+  'O+':  { to: ['O+','A+','B+','AB+'], from: ['O-','O+'] },
+  'A-':  { to: ['A-','A+','AB-','AB+'], from: ['O-','A-'] },
+  'A+':  { to: ['A+','AB+'], from: ['O-','O+','A-','A+'] },
+  'B-':  { to: ['B-','B+','AB-','AB+'], from: ['O-','B-'] },
+  'B+':  { to: ['B+','AB+'], from: ['O-','O+','B-','B+'] },
+  'AB-': { to: ['AB-','AB+'], from: ['O-','A-','B-','AB-'] },
+  'AB+': { to: ['AB+'], from: ['O-','O+','A-','A+','B-','B+','AB-','AB+'] }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  const body = document.getElementById('compatBody');
+  body.innerHTML = Object.keys(COMPAT).map(g => `
+    <tr data-row="${g}">
+      <td class="bg-select" data-group="${g}"><span class="badge">${g}</span></td>
+      <td>${COMPAT[g].to.join(', ')}</td>
+      <td>${COMPAT[g].from.join(', ')}</td>
+    </tr>`).join('');
+
+  body.querySelectorAll('.bg-select').forEach(cell => {
+    cell.addEventListener('click', () => {
+      const g = cell.dataset.group;
+      body.querySelectorAll('tr').forEach(r => r.classList.toggle('active-row', r.dataset.row === g));
+      document.getElementById('compatDetail').style.display = 'grid';
+      document.getElementById('donateToList').innerHTML = COMPAT[g].to.map(x => `<span class="badge badge-success">${x}</span>`).join('');
+      document.getElementById('receiveFromList').innerHTML = COMPAT[g].from.map(x => `<span class="badge">${x}</span>`).join('');
+    });
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+/* Fine-grained breakpoint tweaks that layer on top of component-level
+   media queries already defined alongside each component in style.css. */
+
+@media (max-width: 480px) {
+  .container { width: 94%; }
+  .btn { padding: 0.75rem 1.3rem; font-size: 0.88rem; }
+  .hero { padding: var(--space-xl) 0 var(--space-lg); }
+  .form-card { padding: var(--space-md); }
+  .emergency-bar .container { flex-direction: column; align-items: flex-start; }
+}
+
+@media (min-width: 1400px) {
+  .container { width: min(1320px, 90%); }
+}
+
+@media print {
+  .site-header, .site-footer, .emergency-bar, #toast-root, #loading-screen { display: none !important; }
+}
