@@ -1,0 +1,18 @@
+/* Additional patterns specific to the admin/impact dashboard */
+
+.dash-toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: var(--space-lg); }
+
+.chart-card { padding: var(--space-md); }
+.bar-chart { display: flex; align-items: flex-end; gap: 0.8rem; height: 180px; margin-top: var(--space-md); }
+.bar-chart .bar { flex: 1; border-radius: 8px 8px 0 0; background: var(--gradient-pulse); position: relative; height: 0; transition: height 900ms var(--ease); }
+.bar-chart .bar span { position: absolute; top: -22px; left: 50%; transform: translateX(-50%); font-size: 0.75rem; font-weight: 700; }
+.bar-labels { display: flex; gap: 0.8rem; margin-top: 0.5rem; }
+.bar-labels span { flex: 1; text-align: center; font-size: 0.75rem; color: var(--color-ink-soft); }
+
+.donut-wrap { display: grid; place-items: center; position: relative; }
+.donut-wrap .center-label { position: absolute; text-align: center; }
+.donut-wrap .center-label b { display: block; font-family: var(--font-display); font-size: 1.4rem; }
+
+.dash-table { width: 100%; border-collapse: collapse; }
+.dash-table th, .dash-table td { padding: 0.7rem 0.5rem; text-align: left; border-bottom: 1px solid var(--color-line); font-size: 0.88rem; }
+.dash-table th { color: var(--color-ink-soft); font-weight: 600; text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.06em; }
