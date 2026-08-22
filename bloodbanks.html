@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="flex gap-sm" style="flex-wrap:wrap;margin-top:0.4rem;">
         ${b.groups.map(g => `<span class="badge">${g}</span>`).join('')}
       </div>
-    </div>`).join('');
+    </div>`).join('') || `<div class="empty-state"><strong>No blood banks listed</strong>Check back soon — partner blood banks are added regularly.</div>`;
 });
 </script>
 </body>

@@ -19,6 +19,11 @@
 
 .filter-bar { display: flex; gap: 0.9rem; flex-wrap: wrap; align-items: end; margin-bottom: var(--space-lg); }
 .filter-bar .field { margin-bottom: 0; flex: 1 1 180px; }
+.filter-bar .field-checkbox { display: flex; align-items: center; padding-bottom: 0.75rem; }
+@media (max-width: 620px) {
+  .filter-bar { align-items: stretch; }
+  .filter-bar .field-checkbox { padding-bottom: 0; padding-top: 0.25rem; }
+}
 
 .urgency-picker { display: flex; gap: 0.6rem; }
 .urgency-picker label {

@@ -26,21 +26,26 @@ function bloodDropMark(size = 26) {
 function renderHeader() {
   const path = location.pathname.split('/').pop() || 'index.html';
   const links = NAV_LINKS.map(l =>
-    `<a href="${l.href}"${l.href === path ? ' aria-current="page" style="color:var(--color-ink);font-weight:700"' : ''}>${l.label}</a>`
+    `<a href="${l.href}"${l.href === path ? ' aria-current="page"' : ''}>${l.label}</a>`
   ).join('');
 
   const isLoggedIn = !!DB.read(DB.KEYS.USER);
+  const authLinks = isLoggedIn
+    ? `<a href="dashboard.html" class="btn btn-primary btn-sm">My Dashboard</a>`
+    : `<a href="login.html" class="btn-ghost btn btn-sm">Log in</a><a href="signup.html" class="btn btn-primary btn-sm">Donate Now</a>`;
 
   return `
+  <a href="#" class="skip-link" id="skipLink">Skip to main content</a>
   <header class="site-header">
     <nav class="nav container" aria-label="Primary">
       <a href="index.html" class="brand">${bloodDropMark()} Sanguine</a>
-      <div class="nav-links" id="navLinks">${links}</div>
+      <div class="nav-links" id="navLinks">
+        ${links}
+        <div class="nav-auth-mobile">${authLinks}</div>
+      </div>
       <div class="nav-actions">
         <button class="btn-ghost btn btn-sm" id="darkModeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
-        ${isLoggedIn
-          ? `<a href="dashboard.html" class="btn btn-primary btn-sm">My Dashboard</a>`
-          : `<a href="login.html" class="btn-ghost btn btn-sm">Log in</a><a href="signup.html" class="btn btn-primary btn-sm">Donate Now</a>`}
+        <span class="nav-auth-desktop">${authLinks}</span>
         <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>
@@ -92,6 +97,18 @@ function mountShell() {
   if (footerMount) footerMount.outerHTML = renderFooter();
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+}
+
+function initSkipLink() {
+  const link = document.getElementById('skipLink');
+  const main = document.querySelector('main');
+  if (!link || !main) return;
+  if (!main.hasAttribute('tabindex')) main.setAttribute('tabindex', '-1');
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    main.focus();
+    main.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 }
 
 function initNavToggle() {
@@ -170,7 +187,9 @@ function initScrollReveal() {
 function initAccordions() {
   document.querySelectorAll('.accordion-item .acc-trigger').forEach(btn => {
     btn.addEventListener('click', () => {
-      btn.closest('.accordion-item').classList.toggle('open');
+      const item = btn.closest('.accordion-item');
+      const isOpen = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(isOpen));
     });
   });
 }
@@ -192,6 +211,7 @@ function animateCounters() {
 
 document.addEventListener('DOMContentLoaded', () => {
   mountShell();
+  initSkipLink();
   initNavToggle();
   initDarkMode();
   initLoadingScreen();

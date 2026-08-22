@@ -2,7 +2,6 @@
 
 .dash-toolbar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: var(--space-lg); }
 
-.chart-card { padding: var(--space-md); }
 .bar-chart { display: flex; align-items: flex-end; gap: 0.8rem; height: 180px; margin-top: var(--space-md); }
 .bar-chart .bar { flex: 1; border-radius: 8px 8px 0 0; background: var(--gradient-pulse); position: relative; height: 0; transition: height 900ms var(--ease); }
 .bar-chart .bar span { position: absolute; top: -22px; left: 50%; transform: translateX(-50%); font-size: 0.75rem; font-weight: 700; }

@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p class="muted" style="margin:0.4rem 0;">${c.registered}/${c.seats} seats filled</p>
         <button class="btn ${full ? 'btn-ghost' : 'btn-primary'} btn-sm" data-camp="${c.id}" ${full ? 'disabled' : ''}>${full ? 'Camp Full' : 'Register for Camp'}</button>
       </div>`;
-    }).join('');
+    }).join('') || `<div class="empty-state"><strong>No camps scheduled</strong>New donation camps will appear here as soon as they're announced.</div>`;
 
     mount.querySelectorAll('button[data-camp]').forEach(btn => {
       btn.addEventListener('click', () => {
